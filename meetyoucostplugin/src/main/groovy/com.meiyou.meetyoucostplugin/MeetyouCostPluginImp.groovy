@@ -50,7 +50,7 @@ public class MeetyouCostPluginImp extends Transform implements Plugin<Project> {
     @Override
     void transform(Context context, Collection<TransformInput> inputs, Collection<TransformInput> referencedInputs,
                    TransformOutputProvider outputProvider, boolean isIncremental) throws IOException, TransformException, InterruptedException {
-        println '//===============asm visit start===============//'
+        println '//===============MeetyouCostPluginImp visit start===============//'
         //遍历inputs里的TransformInput
         inputs.each { TransformInput input ->
             //遍历input里边的DirectoryInput
@@ -77,7 +77,7 @@ public class MeetyouCostPluginImp extends Transform implements Plugin<Project> {
                                     fos.close()
                                     CostMethodClassVisitor
                                 }
-                                println '//MeetyouCostPluginImp find file:' + file.getAbsolutePath()
+                                //println '//MeetyouCostPluginImp find file:' + file.getAbsolutePath()
                                 //project.logger.
                         }
                     }
@@ -98,7 +98,7 @@ public class MeetyouCostPluginImp extends Transform implements Plugin<Project> {
                 if (jarName.endsWith(".jar")) {
                     jarName = jarName.substring(0, jarName.length() - 4)
                 }
-                println '//MeetyouCostPluginImp find Jar:' + jarInput.getFile().getAbsolutePath()
+                //println '//MeetyouCostPluginImp find Jar:' + jarInput.getFile().getAbsolutePath()
 
                 //处理jar进行字节码注入处理 TODO
 
@@ -108,7 +108,7 @@ public class MeetyouCostPluginImp extends Transform implements Plugin<Project> {
                 FileUtils.copyFile(jarInput.file, dest)
             }
         }
-        println '//===============asm visit end===============//'
+        println '//===============MeetyouCostPluginImp visit end===============//'
 
     }
 }

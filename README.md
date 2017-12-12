@@ -22,6 +22,8 @@
 4、运行后在在Logcat搜索字样"MeetyouCost会输出耗时统计信息"
 
 ```java
-12-12 13:45:07.676 31050-31050/com.meiyou.frameworkapp I/System.out: Usopp MeetyouCost Method:==> init()V ==>Cost:48 ms
-12-12 13:45:07.887 31050-31050/com.meiyou.frameworkapp I/System.out: Usopp MeetyouCost Method:==> onCreate(Landroid/os/Bundle;)V ==>Cost:138 ms
-```	 
+ I/System.out: Usopp MeetyouCost Method:==> init()V ==>Cost:48 ms
+ I/System.out: Usopp MeetyouCost Method:==> onCreate(Landroid/os/Bundle;)V ==>Cost:138 ms
+```
+
+## [License Apache-2.0](LICENSE)

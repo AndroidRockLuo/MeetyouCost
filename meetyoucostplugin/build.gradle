@@ -1,8 +1,9 @@
 apply plugin: 'java'
 apply plugin: 'groovy'
 apply plugin: 'maven'
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+apply plugin: 'idea'
+sourceCompatibility = 1.7
+targetCompatibility = 1.7
 dependencies {
     compile gradleApi()
     compile localGroovy()
@@ -15,17 +16,32 @@ repositories {
     mavenCentral()
 }
 
-//发布到jcentr请参照：http://blog.csdn.net/sbsujjbcy/article/details/50782830
 
 
-/*group='com.meiyou'
-version='1.0.1'
+configurations {
+    provided
+}
 
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            repository(url: uri('../repo'))
-        }
+sourceSets {
+    main {
+        compileClasspath += configurations.provided
+        test.compileClasspath += configurations.provided
+        test.runtimeClasspath += configurations.provided
     }
-}*/
-apply from: rootProject.file('mvn.gradle')
+}
+
+// if you use 'idea' plugin, otherwise fails with: Could not find method idea() for arguments...
+idea {
+    module {
+        /*
+         * If you omit [ ] around, it fails with: Cannot change configuration ':provided' after it has been resolved
+         * This is due Gradle 2.x using Groovy 2.3 that does not allow += for single elements addition.
+         * More: https://discuss.gradle.org/t/custom-provided-configuration-not-working-with-gradle-2-0-rc2-in-multi-project-mode/2459
+         */
+        scopes.PROVIDED.plus += [configurations.provided]
+        downloadJavadoc = true
+        downloadSources = true
+    }
+}
+
+apply from: 'p.gradle'

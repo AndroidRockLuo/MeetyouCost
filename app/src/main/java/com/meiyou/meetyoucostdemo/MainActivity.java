@@ -4,9 +4,12 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.meiyou.meetyoucostplugin.Cost;
+
 public class MainActivity extends Activity {
 
     @Override
+    @Cost
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -14,7 +17,7 @@ public class MainActivity extends Activity {
         showTest("",new View(this),0);
         show("",new View(this));
     }
-    //@Cost
+    @Cost
     public void show() {
         for (int i = 0; i < 100; i++) {
 

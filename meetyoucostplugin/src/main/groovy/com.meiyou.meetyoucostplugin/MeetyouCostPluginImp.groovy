@@ -13,7 +13,7 @@ import org.objectweb.asm.ClassWriter
 
 import static org.objectweb.asm.ClassReader.EXPAND_FRAMES
 
-public class PluginImpl extends Transform implements Plugin<Project> {
+public class MeetyouCostPluginImp extends Transform implements Plugin<Project> {
     void apply(Project project) {
         /*project.task('testTask') << {
              println "Hello gradle plugin!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
@@ -30,7 +30,7 @@ public class PluginImpl extends Transform implements Plugin<Project> {
 
     @Override
     public String getName() {
-        return "PluginImpl";
+        return "MeetyouCostPluginImp";
     }
 
     @Override
@@ -77,7 +77,7 @@ public class PluginImpl extends Transform implements Plugin<Project> {
                                     fos.close()
                                     CostMethodClassVisitor
                                 }
-                                println '//PluginImpl find file:' + file.getAbsolutePath()
+                                println '//MeetyouCostPluginImp find file:' + file.getAbsolutePath()
                                 //project.logger.
                         }
                     }
@@ -98,7 +98,7 @@ public class PluginImpl extends Transform implements Plugin<Project> {
                 if (jarName.endsWith(".jar")) {
                     jarName = jarName.substring(0, jarName.length() - 4)
                 }
-                println '//PluginImpl find Jar:' + jarInput.getFile().getAbsolutePath()
+                println '//MeetyouCostPluginImp find Jar:' + jarInput.getFile().getAbsolutePath()
 
                 //处理jar进行字节码注入处理 TODO
 

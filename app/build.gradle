@@ -27,5 +27,6 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile "com.meiyou:meetyoucost:${DEPLOY_VERSION}"
+    //compile "com.meiyou:meetyoucostplugin:${DEPLOY_VERSION}"
     //compile project(':meetyoucostimp')
 }

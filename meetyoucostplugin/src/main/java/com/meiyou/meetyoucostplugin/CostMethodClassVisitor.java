@@ -24,7 +24,7 @@ public class CostMethodClassVisitor extends ClassVisitor {
     }
 
     @Override
-    public MethodVisitor visitMethod(int access, String name, String desc, String signature,
+    public MethodVisitor visitMethod(int access,final String name, final String desc, String signature,
                                      String[] exceptions) {
 
         MethodVisitor methodVisitor = cv.visitMethod(access, name, desc, signature, exceptions);
@@ -65,10 +65,10 @@ public class CostMethodClassVisitor extends ClassVisitor {
                 //super.onMethodEnter();
                 if(isInject()){
 
-                    mv.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
-                    mv.visitLdcInsn("========start========="+name+"==>des:"+desc);
-                    mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println",
-                            "(Ljava/lang/String;)V", false);
+                    //mv.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
+                    //mv.visitLdcInsn("========start========="+name+"==>des:"+desc);
+                    //mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println",
+                      //      "(Ljava/lang/String;)V", false);
 
                     mv.visitLdcInsn(name);
                     mv.visitMethodInsn(INVOKESTATIC, "java/lang/System", "nanoTime", "()J", false);
@@ -93,10 +93,10 @@ public class CostMethodClassVisitor extends ClassVisitor {
                     mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println",
                             "(Ljava/lang/String;)V", false);
 
-                    mv.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
-                    mv.visitLdcInsn("========end=========");
-                    mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println",
-                            "(Ljava/lang/String;)V", false);
+                    //mv.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
+                    //mv.visitLdcInsn("========end=========");
+                    //mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println",
+                      //      "(Ljava/lang/String;)V", false);
                 }
             }
         };

@@ -21,7 +21,7 @@
 
 ```java
 @Cost
-public void doSomething() {
+public void init() {
 }
 ```
 运行后在在Logcat搜索字样"MeetyouCost会输出耗时统计信息"

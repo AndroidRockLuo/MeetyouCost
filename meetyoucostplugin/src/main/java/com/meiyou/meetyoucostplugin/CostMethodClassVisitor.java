@@ -73,7 +73,7 @@ public class CostMethodClassVisitor extends ClassVisitor {
 
                     mv.visitLdcInsn(name+desc);
                     mv.visitMethodInsn(INVOKESTATIC, "java/lang/System", "nanoTime", "()J", false);
-                    mv.visitMethodInsn(INVOKESTATIC, "com/meiyou/meetyoucost/TimeCache", "setStartTime",
+                    mv.visitMethodInsn(INVOKESTATIC, "com/meiyou/meetyoucost/CostLog", "setStartTime",
                             "(Ljava/lang/String;J)V", false);
                 }
             }
@@ -84,12 +84,12 @@ public class CostMethodClassVisitor extends ClassVisitor {
                 if(isInject()){
                     mv.visitLdcInsn(name+desc);
                     mv.visitMethodInsn(INVOKESTATIC, "java/lang/System", "nanoTime", "()J", false);
-                    mv.visitMethodInsn(INVOKESTATIC, "com/meiyou/meetyoucost/TimeCache", "setEndTime",
+                    mv.visitMethodInsn(INVOKESTATIC, "com/meiyou/meetyoucost/CostLog", "setEndTime",
                             "(Ljava/lang/String;J)V", false);
 
                     mv.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
                     mv.visitLdcInsn(name+desc);
-                    mv.visitMethodInsn(INVOKESTATIC, "com/meiyou/meetyoucost/TimeCache", "getCostTime",
+                    mv.visitMethodInsn(INVOKESTATIC, "com/meiyou/meetyoucost/CostLog", "getCostTime",
                             "(Ljava/lang/String;)Ljava/lang/String;", false);
                     mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println",
                             "(Ljava/lang/String;)V", false);

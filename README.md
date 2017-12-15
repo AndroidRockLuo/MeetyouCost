@@ -20,9 +20,9 @@
 ####3、在需要统计的方法上加上@Cost
 
 ```java
-	@Cost
-    public void doSomething() {
-    }
+@Cost
+public void doSomething() {
+}
 ```
 运行后在在Logcat搜索字样"MeetyouCost会输出耗时统计信息"
 
@@ -33,17 +33,16 @@
 
 ####4、可设置日志实时监听
 ```java
-	MeetyouCost.setLogListener(new MeetyouCost.onLogListener() {
-            @Override
-            public void log(String log) {
-                
-            }
-        });
+MeetyouCost.setLogListener(new MeetyouCost.onLogListener() {
+      @Override
+      public void log(String log) {
+      }
+});
 ```
 
 ####4、可设置日志实时缓存
 ```java
-	MeetyouCost.openLogCache(true);
+MeetyouCost.openLogCache(true);
 ```
 然后可以在任意位置通过MeetyouCost.getLogCache获取整体日志
 

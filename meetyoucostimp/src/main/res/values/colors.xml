@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="view_bg_color">#4d000000</color>
+    <color name="view_bg_color_beta">#7f000000</color>
+    <color name="red_b">#ff74b9</color>
+    <color name="colour_d">#ffa200</color>
+    <color name="colour_e">#ffff00</color>
+    <color name="colour_f">#ffffff</color>
+    <color name="colour_g">#b0d25b</color>
+</resources>

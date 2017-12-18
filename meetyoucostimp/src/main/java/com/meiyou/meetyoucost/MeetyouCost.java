@@ -1,5 +1,7 @@
 package com.meiyou.meetyoucost;
 
+import android.content.Context;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,10 +14,12 @@ public class MeetyouCost {
 
     public static List<String> mLogCache = new ArrayList<>();
     public static interface onLogListener {
-        public void log(String log);
+        public void log(String log,String methodName,long costTimeMs);
     }
     public static onLogListener mOnLogListener;
     public static boolean isOpenLogCache = false;
+    public static boolean isOpenLogUI = false;
+    public static  Context mContext;
 
     /**
      * 设置日志监听
@@ -32,6 +36,11 @@ public class MeetyouCost {
      */
     public static void openLogCache(boolean flag){
         isOpenLogCache = false;
+    }
+
+    public static void openLogUI(Context context,boolean flag){
+        isOpenLogUI = flag;
+        mContext = context;
     }
 
     public static List<String> getLogCache() {

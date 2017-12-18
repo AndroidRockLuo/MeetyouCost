@@ -19,7 +19,7 @@ public class MainActivity extends Activity {
     protected void onApplyThemeResource(Resources.Theme theme, int resid, boolean first) {
         super.onApplyThemeResource(theme, resid, first);
 
-        //MeetyouCost.openLogUI(this,true);
+        MeetyouCost.openLogUI(getApplicationContext(),true);
         MeetyouCost.setLogListener(new MeetyouCost.onLogListener() {
 
             @Override

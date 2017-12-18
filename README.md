@@ -6,7 +6,7 @@
 
 ####1、在project的build.gradle添加classpath
 
-	classpath "com.meiyou:meetyoucostplugin:1.0.5"
+	classpath "com.meiyou:meetyoucostplugin:1.0.7"
 
 ####2、在app/build.gradle添加
 
@@ -14,7 +14,7 @@
 
 在dependencies里添加
 
-	 compile "com.meiyou:meetyoucost:1.0.5"
+	 compile "com.meiyou:meetyoucost:1.0.7"
 	 
 	 
 ####3、在需要统计的方法上加上@Cost
@@ -45,5 +45,11 @@ MeetyouCost.setLogListener(new MeetyouCost.onLogListener() {
 MeetyouCost.openLogCache(true);
 ```
 然后可以在任意位置通过MeetyouCost.getLogCache获取整体日志
+
+####4、可视化UI
+```java
+MeetyouCost.openLogUI(getApplicationContext(),true);
+```
+
 
 ## [License Apache-2.0](LICENSE)

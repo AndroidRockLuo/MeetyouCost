@@ -2,6 +2,7 @@ package com.meiyou.meetyoucost.ui;
 
 import android.content.Context;
 import android.graphics.PixelFormat;
+import android.os.Build;
 import android.text.Html;
 import android.text.method.ScrollingMovementMethod;
 import android.view.Gravity;
@@ -74,6 +75,15 @@ public class LogView {
                                // | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN ,
                         //| WindowManager.LayoutParams.FLAG_FULLSCREEN,
                         PixelFormat.TRANSLUCENT);
+                if (Build.VERSION.SDK_INT >= 24) {
+                    mLayoutParams.type = WindowManager.LayoutParams.TYPE_PHONE;
+                } else {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                        mLayoutParams.type = WindowManager.LayoutParams.TYPE_TOAST;
+                    } else {
+                        mLayoutParams.type = WindowManager.LayoutParams.TYPE_PHONE;
+                    }
+                }
                 mLayoutParams.gravity = Gravity.TOP | Gravity.RIGHT;
                 mLayoutParams.y = 10;
 

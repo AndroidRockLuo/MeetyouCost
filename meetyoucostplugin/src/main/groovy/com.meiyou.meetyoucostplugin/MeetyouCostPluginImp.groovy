@@ -68,7 +68,8 @@ public class MeetyouCostPluginImp extends Transform implements Plugin<Project> {
                                         !"R.class".equals(name) && !"BuildConfig.class".equals(name)) {
                                     ClassReader classReader = new ClassReader(file.bytes)
                                     ClassWriter classWriter = new ClassWriter(classReader,ClassWriter.COMPUTE_MAXS)
-                                    ClassVisitor cv = new CostMethodClassVisitor(classWriter)
+                                    def className = name.split(".class")[0]
+                                    ClassVisitor cv = new CostMethodClassVisitor(className,classWriter)
                                     classReader.accept(cv, EXPAND_FRAMES)
                                     byte[] code = classWriter.toByteArray()
                                     FileOutputStream fos = new FileOutputStream(

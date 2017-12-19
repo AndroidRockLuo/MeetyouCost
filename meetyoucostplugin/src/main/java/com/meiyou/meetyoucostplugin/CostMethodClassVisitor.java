@@ -19,8 +19,10 @@ import org.objectweb.asm.signature.SignatureVisitor;
 
 public class CostMethodClassVisitor extends ClassVisitor {
 
-    public CostMethodClassVisitor(ClassVisitor classVisitor) {
+    private String className;
+    public CostMethodClassVisitor(String className,ClassVisitor classVisitor) {
         super(Opcodes.ASM5,classVisitor);
+        this.className = className;
     }
 
     @Override
@@ -71,7 +73,7 @@ public class CostMethodClassVisitor extends ClassVisitor {
                     //mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println",
                       //      "(Ljava/lang/String;)V", false);
 
-                    mv.visitLdcInsn(name+desc);
+                    mv.visitLdcInsn(className+":"+name+desc);
                     mv.visitMethodInsn(INVOKESTATIC, "java/lang/System", "nanoTime", "()J", false);
                     mv.visitMethodInsn(INVOKESTATIC, "com/meiyou/meetyoucost/CostLog", "setStartTime",
                             "(Ljava/lang/String;J)V", false);
@@ -82,13 +84,13 @@ public class CostMethodClassVisitor extends ClassVisitor {
             protected void onMethodExit(int i) {
                 //super.onMethodExit(i);
                 if(isInject()){
-                    mv.visitLdcInsn(name+desc);
+                    mv.visitLdcInsn(className+":"+name+desc);
                     mv.visitMethodInsn(INVOKESTATIC, "java/lang/System", "nanoTime", "()J", false);
                     mv.visitMethodInsn(INVOKESTATIC, "com/meiyou/meetyoucost/CostLog", "setEndTime",
                             "(Ljava/lang/String;J)V", false);
 
                     mv.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
-                    mv.visitLdcInsn(name+desc);
+                    mv.visitLdcInsn(className+":"+name+desc);
                     mv.visitMethodInsn(INVOKESTATIC, "com/meiyou/meetyoucost/CostLog", "getCostTime",
                             "(Ljava/lang/String;)Ljava/lang/String;", false);
                     mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println",

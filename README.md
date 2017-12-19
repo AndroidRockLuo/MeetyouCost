@@ -14,7 +14,7 @@
 
 在dependencies里添加
 
-	 compile "com.meiyou:meetyoucost:1.0.8"
+	 compile "com.meiyou:meetyoucost:1.0.8@aar"
 	 
 	 
 ####3、在需要统计的方法上加上@Cost

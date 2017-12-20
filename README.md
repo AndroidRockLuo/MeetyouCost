@@ -6,7 +6,7 @@
 
 ####1、在project的build.gradle添加classpath
 
-	classpath "com.meiyou:meetyoucostplugin:1.0.8"
+	classpath "com.meiyou:meetyoucostplugin:1.0.13"
 
 ####2、在app/build.gradle添加
 
@@ -14,7 +14,7 @@
 
 在dependencies里添加
 
-	 compile "com.meiyou:meetyoucost:1.0.8@aar"
+	 compile "com.meiyou:meetyoucost:1.0.13@aar"
 	 
 	 
 ####3、在需要统计的方法上加上@Cost

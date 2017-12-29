@@ -89,12 +89,12 @@ public class CostMethodClassVisitor extends ClassVisitor {
                     mv.visitMethodInsn(INVOKESTATIC, "com/meiyou/meetyoucost/CostLog", "setEndTime",
                             "(Ljava/lang/String;J)V", false);
 
-                    mv.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
+                    /*mv.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
                     mv.visitLdcInsn(className+":"+name+desc);
                     mv.visitMethodInsn(INVOKESTATIC, "com/meiyou/meetyoucost/CostLog", "getCostTime",
                             "(Ljava/lang/String;)Ljava/lang/String;", false);
                     mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println",
-                            "(Ljava/lang/String;)V", false);
+                            "(Ljava/lang/String;)V", false);*/
 
                     //mv.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
                     //mv.visitLdcInsn("========end=========");

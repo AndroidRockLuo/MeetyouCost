@@ -19,26 +19,32 @@ public class MainActivity extends Activity {
     protected void onApplyThemeResource(Resources.Theme theme, int resid, boolean first) {
         super.onApplyThemeResource(theme, resid, first);
 
-        MeetyouCost.openLogUI(getApplicationContext(),true);
+        /*MeetyouCost.openLogUI(getApplicationContext(),true);
         MeetyouCost.setLogListener(new MeetyouCost.onLogListener() {
 
             @Override
             public void log(String log, String methodName, long costTimeMs) {
                 Log.d(TAG, "MeetyouCost onLogListener:" + log);
                 //String str="默认颜色<font color='#FF0000'>红颜色</font>";
-                /*if(costTimeMs>50){
+                *//*if(costTimeMs>50){
                     String costLogs = "<font color='#ff74b9'>"+costTimeMs+"</font>";
                     mLogView.appendLog(methodName+":"+costLogs+" ms");
                 }else {
                     mLogView.appendLog(methodName+":"+costTimeMs+" ms");
-                }*/
+                }*//*
 
             }
         });
-        MeetyouCost.openLogCache(true);
+        MeetyouCost.openLogCache(true);*/
+        MeetyouCost.setLogListener(new MeetyouCost.onLogListener() {
+
+            @Override
+            public void log(String log, String methodName, long costTimeMs) {
+
+            }
+        });
 
     }
-
 
 
     @Override

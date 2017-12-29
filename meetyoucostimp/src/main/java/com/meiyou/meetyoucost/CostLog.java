@@ -31,14 +31,11 @@ public class CostLog {
      */
     public static void setEndTime(String methodName, long time) {
         sEndTime.put(methodName, time);
+        handleCost(methodName);
+
     }
 
-    /**
-     * 获取某方法耗时结果，内部使用
-     * @param methodName
-     * @return
-     */
-    public static String getCostTime(String methodName) {
+    private static  void handleCost(String methodName){
         long start = sStartTime.get(methodName);
         long end = sEndTime.get(methodName);
         long cost = Long.valueOf(end - start) / (1000 * 1000) ;
@@ -48,6 +45,48 @@ public class CostLog {
             //监听
             if (MeetyouCost.mOnLogListener != null) {
                 MeetyouCost.mOnLogListener.log(log,methodName,cost);
+            }else{
+                System.out.println(log);
+            }
+            //收集日志
+            if(MeetyouCost.isOpenLogCache)
+                MeetyouCost.mLogCache.add(log);
+            //显示UI
+            if(MeetyouCost.isOpenLogUI){
+                if(Thread.currentThread() == Looper.getMainLooper().getThread()){
+                    if(logView==null){
+                        logView = new LogView(MeetyouCost.mContext);
+                    }
+                    if(cost>50){
+                        String costLogs = "<font color='#ff74b9'>"+cost+"</font>";
+                        logView.appendLog(methodName+":"+costLogs+" ms");
+                    }else {
+                        logView.appendLog(methodName+":"+cost+" ms");
+                    }
+                }
+            }
+        }catch (Exception ex){
+            ex.printStackTrace();
+        }
+    }
+
+    /**
+     * 获取某方法耗时结果，内部使用
+     * @param methodName
+     * @return
+     */
+    /*public static String getCostTime(String methodName) {
+        long start = sStartTime.get(methodName);
+        long end = sEndTime.get(methodName);
+        long cost = Long.valueOf(end - start) / (1000 * 1000) ;
+        String log = "Usopp MeetyouCost Method:==> " + methodName + " ==>Cost:" + cost+ " ms";
+        try{
+
+            //监听
+            if (MeetyouCost.mOnLogListener != null) {
+                MeetyouCost.mOnLogListener.log(log,methodName,cost);
+            }else{
+                System.out.println(log);
             }
             //收集日志
             if(MeetyouCost.isOpenLogCache)
@@ -70,7 +109,7 @@ public class CostLog {
             ex.printStackTrace();
         }
         return log;
-    }
+    }*/
 
     private static LogView logView;
 

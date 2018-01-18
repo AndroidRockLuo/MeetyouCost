@@ -59,6 +59,9 @@ public class MeetyouCostPluginImp extends Transform implements Plugin<Project> {
     void transform(Context context, Collection<TransformInput> inputs, Collection<TransformInput> referencedInputs,
                    TransformOutputProvider outputProvider, boolean isIncremental) throws IOException, TransformException, InterruptedException {
         println '//===============MeetyouCostPluginImp visit start===============//'
+        //删除之前的输出
+        if(outputProvider!=null)
+            outputProvider.deleteAll()
         //遍历inputs里的TransformInput
         inputs.each { TransformInput input ->
             //遍历input里边的DirectoryInput
@@ -149,7 +152,7 @@ public class MeetyouCostPluginImp extends Transform implements Plugin<Project> {
                         InputStream inputStream = jarFile.getInputStream(jarEntry);
                         //如果是inject文件就跳过
 
-                        //anna插桩class
+                        //插桩class
                         if (entryName.endsWith(".class") && !entryName.contains("R\$") &&
                                 !entryName.contains("R.class") && !entryName.contains("BuildConfig.class")) {
                             //class文件处理

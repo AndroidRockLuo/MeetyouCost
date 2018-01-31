@@ -26,7 +26,7 @@ public class CostMethodClassVisitor extends ClassVisitor {
     }
 
     @Override
-    public MethodVisitor visitMethod(int access,final String name, final String desc, String signature,
+    public MethodVisitor visitMethod(final int access, final String name, final String desc, final String signature,
                                      String[] exceptions) {
 
         MethodVisitor methodVisitor = cv.visitMethod(access, name, desc, signature, exceptions);
@@ -66,13 +66,26 @@ public class CostMethodClassVisitor extends ClassVisitor {
             @Override
             protected void onMethodEnter() {
                 //super.onMethodEnter();
+                //统计public static类方法
+                if(access==Opcodes.ACC_STATIC+Opcodes.ACC_PUBLIC
+                        && !name.equals("countStaticClass")
+                        && !className.equals("com/meiyou/meetyoucost/CostLog")){
+                    StringBuilder sb = new StringBuilder();
+                    sb.append("Usopp MeetyouCost Statics :").append(className).append(":").append(name);
+                    //String log = className+":contains public static method:"+name+":"+desc;
+                    //TestController:contains public static method:getInstance:()Lcom/meiyou/meetyoucostdemo/TestController;
+                    mv.visitLdcInsn(className);
+                    mv.visitLdcInsn(name);
+                    String log = sb.toString();
+                    mv.visitLdcInsn(log);
+                    mv.visitMethodInsn(INVOKESTATIC, "com/meiyou/meetyoucost/CostLog", "countStaticClass",
+                            "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V", false);
+                    // mw.visitInsn(RETURN);
+                    // 这段代码使用最多一个栈元素和一个本地变量
+                    //mw.visitMaxs(1, 1);
+                }
+                //统计方法耗时
                 if(isInject()){
-
-                    //mv.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
-                    //mv.visitLdcInsn("========start========="+name+"==>des:"+desc);
-                    //mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println",
-                      //      "(Ljava/lang/String;)V", false);
-
                     mv.visitLdcInsn(className+":"+name+desc);
                     mv.visitMethodInsn(INVOKESTATIC, "java/lang/System", "nanoTime", "()J", false);
                     mv.visitMethodInsn(INVOKESTATIC, "com/meiyou/meetyoucost/CostLog", "setStartTime",

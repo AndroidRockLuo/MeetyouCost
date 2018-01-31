@@ -16,10 +16,18 @@ public class MeetyouCost {
     public static interface onLogListener {
         public void log(String log,String methodName,long costTimeMs);
     }
+    public static interface onCountStaticClassListener {
+        public void log(String classname,String method,String log);
+    }
     public static onLogListener mOnLogListener;
+    public static onCountStaticClassListener mCountStaticClassListener;
     public static boolean isOpenLogCache = false;
     public static boolean isOpenLogUI = false;
     public static  Context mContext;
+
+    public static void setCountStaticClassListener(onCountStaticClassListener mCountStaticClassListener) {
+        MeetyouCost.mCountStaticClassListener = mCountStaticClassListener;
+    }
 
     /**
      * 设置日志监听

@@ -36,14 +36,15 @@ public class MainActivity extends Activity {
             }
         });
         MeetyouCost.openLogCache(true);*/
-        MeetyouCost.setLogListener(new MeetyouCost.onLogListener() {
+       /* MeetyouCost.setLogListener(new MeetyouCost.onLogListener() {
 
             @Override
             public void log(String log, String methodName, long costTimeMs) {
 
             }
         });
-
+*/
+       TestController.getInstance();
     }
 
 

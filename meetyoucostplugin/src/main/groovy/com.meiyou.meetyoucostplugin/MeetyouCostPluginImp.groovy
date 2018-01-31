@@ -159,7 +159,7 @@ public class MeetyouCostPluginImp extends Transform implements Plugin<Project> {
                             jarOutputStream.putNextEntry(zipEntry);
                             ClassReader classReader = new ClassReader(IOUtils.toByteArray(inputStream))
                             ClassWriter classWriter = new ClassWriter(classReader, ClassWriter.COMPUTE_MAXS)
-                            def className = name.split(".class")[0]
+                            def className = entryName.split(".class")[0]
                             ClassVisitor cv = new CostMethodClassVisitor(className,classWriter)
                             classReader.accept(cv, EXPAND_FRAMES)
                             byte[] code = classWriter.toByteArray()

@@ -3,6 +3,7 @@ package com.meiyou.meetyoucost;
 import android.os.Looper;
 
 import com.meiyou.meetyoucost.ui.LogView;
+import com.meiyou.meetyoucostplugin.Cost;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -83,6 +84,11 @@ public class CostLog {
     }
 
 
+
+    @Cost
+    public static boolean isOk(){
+        return true;
+    }
 
     private static LogView logView;
 

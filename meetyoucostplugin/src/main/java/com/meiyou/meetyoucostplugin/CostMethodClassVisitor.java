@@ -61,7 +61,12 @@ public class CostMethodClassVisitor extends ClassVisitor {
                 super.visitFieldInsn(opcode, owner, name, desc);
             }
 
-
+            public void print(String msg){
+                mv.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
+                mv.visitLdcInsn(msg);
+                mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println",
+                        "(Ljava/lang/String;)V", false);
+            }
 
             @Override
             protected void onMethodEnter() {
@@ -69,6 +74,7 @@ public class CostMethodClassVisitor extends ClassVisitor {
                 //统计public static类方法
                 if(access==Opcodes.ACC_STATIC+Opcodes.ACC_PUBLIC
                         && !name.equals("countStaticClass")
+                        && !name.equals("isOk")
                         && !className.equals("com/meiyou/meetyoucost/CostLog")){
                     StringBuilder sb = new StringBuilder();
                     sb.append("Usopp MeetyouCost Statics :").append(className).append(":").append(name);
@@ -86,10 +92,21 @@ public class CostMethodClassVisitor extends ClassVisitor {
                 }
                 //统计方法耗时
                 if(isInject()){
-                    mv.visitLdcInsn(className+":"+name+desc);
-                    mv.visitMethodInsn(INVOKESTATIC, "java/lang/System", "nanoTime", "()J", false);
-                    mv.visitMethodInsn(INVOKESTATIC, "com/meiyou/meetyoucost/CostLog", "setStartTime",
-                            "(Ljava/lang/String;J)V", false);
+                    if(name.equals("isOk")){
+                       /* mv.visitMethodInsn(INVOKESTATIC, "com/meiyou/meetyoucost/CostLog", "isOk",
+                                "()Z", false);
+                        Type type = Type.getReturnType(desc);
+                        ResultTypeUtil.returnResult(mv,type);*/
+                       //理解这篇文章
+                       //https://www.cnblogs.com/coding-way/p/6600647.html
+                        mv.visitLdcInsn(false);
+                        mv.visitInsn(IRETURN);
+                    }else{
+                        mv.visitLdcInsn(className+":"+name+desc);
+                        mv.visitMethodInsn(INVOKESTATIC, "java/lang/System", "nanoTime", "()J", false);
+                        mv.visitMethodInsn(INVOKESTATIC, "com/meiyou/meetyoucost/CostLog", "setStartTime",
+                                "(Ljava/lang/String;J)V", false);
+                    }
                 }
             }
 
@@ -112,7 +129,7 @@ public class CostMethodClassVisitor extends ClassVisitor {
                     //mv.visitFieldInsn(GETSTATIC, "java/lang/System", "out", "Ljava/io/PrintStream;");
                     //mv.visitLdcInsn("========end=========");
                     //mv.visitMethodInsn(INVOKEVIRTUAL, "java/io/PrintStream", "println",
-                      //      "(Ljava/lang/String;)V", false);
+                    //      "(Ljava/lang/String;)V", false);
                 }
             }
         };

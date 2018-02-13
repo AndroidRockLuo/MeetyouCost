@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 
+import com.meiyou.meetyoucost.CostLog;
 import com.meiyou.meetyoucost.MeetyouCost;
 import com.meiyou.meetyoucost.ui.LogView;
 import com.meiyou.meetyoucostplugin.Cost;
@@ -45,6 +46,9 @@ public class MainActivity extends Activity {
         });
 */
        TestController.getInstance();
+        CostLog costLog = new CostLog();
+        Log.d(TAG,"costLog.isOk():"+costLog.isOk());
+
     }
 
 

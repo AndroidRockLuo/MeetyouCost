@@ -72,7 +72,7 @@ public class CostMethodClassVisitor extends ClassVisitor {
             protected void onMethodEnter() {
                 //super.onMethodEnter();
                 //统计public static类方法
-                if(access==Opcodes.ACC_STATIC+Opcodes.ACC_PUBLIC
+               /* if(access==Opcodes.ACC_STATIC+Opcodes.ACC_PUBLIC
                         && !name.equals("countStaticClass")
                         && !name.equals("isOk")
                         && !className.equals("com/meiyou/meetyoucost/CostLog")){
@@ -89,7 +89,7 @@ public class CostMethodClassVisitor extends ClassVisitor {
                     // mw.visitInsn(RETURN);
                     // 这段代码使用最多一个栈元素和一个本地变量
                     //mw.visitMaxs(1, 1);
-                }
+                }*/
                 //统计方法耗时
                 if(isInject()){
                     if(name.equals("isOk")){
